@@ -13,9 +13,19 @@ export class ReportsService {
   }
 
   getReports(){
-    console.log("yo")
-    return this.http.get('http://localhost:8080/report')
+    return this.http.get<Array<Object>>('http://localhost:8080/report')
   }
 
+  deleteReport(title){
+    //todo
+  }
+
+  updateReport(title){
+    //todo
+  }
+
+  createReport(title){
+    //todo
+  }
 
 }

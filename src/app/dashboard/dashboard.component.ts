@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportsService } from '../reports.service'
+import { Report } from '../../models/report'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -7,7 +8,7 @@ import { ReportsService } from '../reports.service'
 })
 export class DashboardComponent implements OnInit {
 
-  reports:Object
+  reports:Array<Report>
   
   constructor(private reportService:ReportsService) {
 
@@ -16,8 +17,24 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.reportService.getReports().subscribe(data =>{
       console.log(data)
-      this.reports = data
+      this.reports = data.map(report => new Report(report))
+      console.log(this.reports)
     })
   }
+
+
+  remove(_id){
+    console.log(_id)
+  }
+
+  update(_id){
+    for(let r of this.reports){
+      if(r._id == _id){
+        r.active = true
+      }
+      console.log(r)
+    }
+  }
+
 
 }

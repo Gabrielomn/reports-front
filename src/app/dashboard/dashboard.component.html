@@ -2,24 +2,26 @@
   dashboard works!
 </p>
 <div class="container">
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Theme</th>
-            <th scope="col">Description</th>
-            <th scope="col">link</th>
-            <th scope="col">Image Link</th>
-
-          </tr>
-        </thead>
-        <tr *ngFor="let report of reports">
-          <td>{{report.title}}</td>
-          <td>{{report.theme}}</td>
-          <td>{{report.description}}</td>
-          <td>{{report.link}}</td>
-          <td>{{report.imgLink}}</td>
-        </tr>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Theme</th>
+        <th scope="col">Description</th>
+        <th scope="col">link</th>
+        <th scope="col">Image Link</th>
+        
+      </tr>
+    </thead>
+    <tr *ngFor="let report of reports">
+      <td>{{report.title}}</td>
+      <td>{{report.theme}}</td>
+      <td>{{report.description}}</td>
+      <td>{{report.link}}</td>
+      <td>{{report.imgLink}}</td>
+      <button (click)="remove(report._id)">Remove</button>
+      <button (click)="update(report._id)">Update</button>
+    </tr>
+    <app-form report="report"></app-form>
       </table>
 </div>  
-<app-form></app-form>
