@@ -7,12 +7,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PostReportComponent } from './post-report/post-report.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateReportComponent } from './update-report/update-report.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    PostReportComponent
+    PostReportComponent,
+    UpdateReportComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
   ],
   entryComponents:[
-    PostReportComponent
+    PostReportComponent,
+    UpdateReportComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

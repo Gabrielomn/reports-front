@@ -15,7 +15,7 @@ export class PostReportComponent implements OnInit {
   description
   link
   imgLink
-
+  
   constructor(private activeModal:NgbActiveModal,
     private reportService:ReportsService) {
     this.title = new FormControl('')

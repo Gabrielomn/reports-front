@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ReportsService } from '../reports.service'
 import { Report } from '../../models/report'
 import { PostReportComponent } from '../post-report/post-report.component'
+import { UpdateReportComponent } from '../update-report/update-report.component'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -11,7 +14,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 export class DashboardComponent implements OnInit {
 
   reports:Array<Report>
-  
+  currentTitle: string;
+
   constructor(private reportService:ReportsService,
     private modalService:NgbModal
     ) {
@@ -29,14 +33,6 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  update(_id){
-    for(let r of this.reports){
-      if(r._id == _id){
-        r.active = true
-      }
-      console.log(r)
-    }
-  }
 
   updateReports(){
     this.reportService.getReports().subscribe(data =>{
@@ -45,8 +41,23 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  openModalForm(){
+  openPostForm(){
     const modalRef = this.modalService.open(PostReportComponent)
+    modalRef.result.then((result) => {
+      this.updateReports()
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
+
+  openUpdateForm(report:Report){
+    let modalRef = this.modalService.open(UpdateReportComponent)
+    modalRef.componentInstance.title = report.title
+    modalRef.componentInstance.theme = report.theme
+    modalRef.componentInstance.description = report.description
+    modalRef.componentInstance.link = report.link
+    modalRef.componentInstance.imgLink = report.imgLink
+    modalRef.componentInstance.id = report._id
     modalRef.result.then((result) => {
       this.updateReports()
     }).catch((error) => {

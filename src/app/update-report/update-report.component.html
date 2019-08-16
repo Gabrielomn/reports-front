@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h3 class="modal-title">Update this report</h3>
+    <button (click)="activeModal.dismiss('closing form')" class = "close" aria-label="Close" type="button"></button>
+  </div>
+  <div class = "modal-body">
+      <label>
+          Title:
+          <input type="text" [(ngModel)]="title">
+          <p></p>
+          Theme:
+          <input type="text" [(ngModel)]="theme">
+          <p></p>
+          Description:
+          <input type="text" [(ngModel)]="description">
+          <p></p>
+          Link:
+          <input type="text" [(ngModel)]="link">
+          <p></p>
+          Image Link:
+          <input type="text" [(ngModel)]="imgLink">
+      </label>
+  </div>
+  <div class="modal-footer">
+    <input value="Update" type="submit" (click)=submit(title,theme,description,link,imgLink,id)>
+  </div>

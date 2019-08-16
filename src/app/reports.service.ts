@@ -25,8 +25,9 @@ export class ReportsService {
     return this.http.delete(`http://localhost:8080/report/${id}`,this.headers)
   }
   
-  updateReport(_id){
-    //todo
+  updateReport(id, report){
+    console.log(`updating ${id}`)
+    return this.http.put(`http://localhost:8080/report/${id}`, report, this.headers)
   }
 
   createReport(report){
