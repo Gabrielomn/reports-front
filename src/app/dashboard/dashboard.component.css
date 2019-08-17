@@ -41,9 +41,12 @@ table tr td{
 .addButton {
 
     background-color: transparent;
-    transition-duration: 0.4s;
     border:none;
 }  
+
+.addButton i{
+    transition-duration: 0.4s;
+}
 
 .addButton i:hover {
     color: #4CAF50; 

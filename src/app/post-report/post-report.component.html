@@ -8,7 +8,12 @@
         <input type="text" [formControl]="title">
         <p></p>
         Theme:
-        <input type="text" [formControl]="theme">
+        <select type="select" [formControl]="theme">
+          <option value ="Esportes">Esportes</option>
+          <option value ="Política">Política</option>
+          <option value ="Entretenimento">Entretenimento</option>
+          <option value ="Famosos">Famosos</option>
+        </select>
         <p></p>
         Description:
         <input type="text" [formControl]="description">

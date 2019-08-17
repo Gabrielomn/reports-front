@@ -29,7 +29,7 @@ export class UpdateReportComponent implements OnInit {
       link,
       imgLink
     }).subscribe(data=>{
-      console.log('rolou?')
+      console.log(data)
       this.closeModal()
     })
   }

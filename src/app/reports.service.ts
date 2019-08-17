@@ -10,28 +10,31 @@ export class ReportsService {
 
   constructor(private http: HttpClient) { 
     this.headers = new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization':'placeholder'
+      'Authorization': 'Bearer' + 'placeholder',
+      'Content-Type':  'application/json'
     })
+
+    console.log(this.headers.keys())
+    console.log(this.headers.get('Authorization'))
 
   }
 
   getReports(){
-    return this.http.get<Array<Object>>('http://localhost:8080/report')
+    return this.http.get<Array<Object>>('http://localhost:8080/report', {headers:this.headers})
   }
 
   deleteReport(id){
     console.log(`deleting ${id}`)
-    return this.http.delete(`http://localhost:8080/report/${id}`,this.headers)
+    return this.http.delete(`http://localhost:8080/report/${id}`,{headers:this.headers})
   }
   
   updateReport(id, report){
     console.log(`updating ${id}`)
-    return this.http.put(`http://localhost:8080/report/${id}`, report, this.headers)
+    return this.http.put(`http://localhost:8080/report/${id}`, report, {headers:this.headers})
   }
 
   createReport(report){
-    return this.http.post("http://localhost:8080/report", report, this.headers)
+    return this.http.post("http://localhost:8080/report", report, {headers:this.headers})
   }
 
 }
