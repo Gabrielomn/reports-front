@@ -1,24 +1,31 @@
 <div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Theme</th>
-        <th scope="col">Description</th>
-        <th scope="col">link</th>
-        <th scope="col">Image Link</th>
-        
+  <div class="body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Theme</th>
+          <th scope="col">Description</th>
+          <th scope="col">link</th>
+          <th scope="col">Image Link</th>
+          <th></th>
+
+        </tr>
+      </thead>
+      <tr *ngFor="let report of reports">
+        <td>{{report.title}}</td>
+        <td>{{report.theme}}</td>
+        <td>{{report.description}}</td>
+        <td>{{report.link}}</td>
+        <td>{{report.imgLink}}</td>
+      <button (click)="remove(report._id)"><i class="material-icons">delete_forever</i></button>
+      <button (click)="openUpdateForm(report)"><i class="material-icons">refresh</i></button>
       </tr>
-    </thead>
-    <tr *ngFor="let report of reports">
-      <td>{{report.title}}</td>
-      <td>{{report.theme}}</td>
-      <td>{{report.description}}</td>
-      <td>{{report.link}}</td>
-      <td>{{report.imgLink}}</td>
-      <button (click)="remove(report._id)">Remove</button>
-      <button (click)="openUpdateForm(report)">Update</button>
-    </tr>
-  </table>
-  <button (click)="openPostForm()">+</button>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col text-center">
+      <button class="addButton" (click)="openPostForm()"><i class="material-icons md-48">add_circle</i></button>
+    </div>
+  </div>
 </div>  
