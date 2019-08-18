@@ -10,6 +10,9 @@ import { ReportsService } from '../reports.service'
 })
 export class PostReportComponent implements OnInit {
 
+  urlRegexp = new RegExp("^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$")
+
+
   title
   theme
   description
@@ -34,15 +37,18 @@ export class PostReportComponent implements OnInit {
   }
 
   submit(title, theme, description, link, imgLink){
-    this.reportService.createReport({
-      title : title.value,
-      theme : theme.value,
-      description : description.value,
-      link : link.value,
-      imgLink : imgLink.value
-    }).subscribe(data => {
-      this.closeModal()
-    })
-
+    if(!(this.urlRegexp.test(link) && this.urlRegexp.test(imgLink))){
+      alert("INVALID URL FORMAT")
+    }else{
+      this.reportService.createReport({
+        title : title.value,
+        theme : theme.value,
+        description : description.value,
+        link : link.value,
+        imgLink : imgLink.value
+      }).subscribe(data => {
+        this.closeModal()
+      })
+    }
   }
 }

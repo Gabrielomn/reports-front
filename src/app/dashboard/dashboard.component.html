@@ -16,8 +16,8 @@
         <td>{{report.title}}</td>
         <td>{{report.theme}}</td>
         <td>{{report.description}}</td>
-        <td>{{report.link}}</td>
-        <td>{{report.imgLink}}</td>
+        <td><a href="{{report.link}}">{{report.link}}</a></td>
+        <td><a href="{{report.imgLink}}">{{report.imgLink}}</a></td>
       <button (click)="remove(report._id)"><i class="material-icons">delete_forever</i></button>
       <button (click)="openUpdateForm(report)"><i class="material-icons">refresh</i></button>
       </tr>
