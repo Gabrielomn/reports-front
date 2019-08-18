@@ -11,7 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 })
 export class UpdateReportComponent implements OnInit {
 
-  urlRegexp = new RegExp("^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$")
+  urlRegexp = new RegExp("^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(.)*$")
 
   
   constructor(private activeModal:NgbActiveModal,
@@ -23,9 +23,7 @@ export class UpdateReportComponent implements OnInit {
   }
 
   submit(title,theme,description,link,imgLink, id){
-    if(!(this.urlRegexp.test(link) && this.urlRegexp.test(imgLink))){
-      alert("INVALID URL FORMAT")
-    }else{
+    if(this.validateData(title, theme,description,link,imgLink)){
       this.reportService.updateReport(id, {
         title,
         theme,
@@ -33,7 +31,6 @@ export class UpdateReportComponent implements OnInit {
         link,
         imgLink
       }).subscribe(data=>{
-        console.log(data)
         this.closeModal()
       })
     }
@@ -41,5 +38,16 @@ export class UpdateReportComponent implements OnInit {
 
   closeModal(){
     this.activeModal.close('Modal closed')
+  }
+
+  validateData(title, theme, description, link, imgLink){
+    if(!(this.urlRegexp.test(link) && this.urlRegexp.test(imgLink))){
+      alert("INVALID URL")
+      return false
+    }else if(title.length > 80 || description.length > 80){
+      alert("STRING LONGA DEMAIS, TEM QUE TER ATÉ 80 CARACTERES")
+      return false
+    }
+    return true;
   }
 }

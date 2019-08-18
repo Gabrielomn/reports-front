@@ -10,7 +10,7 @@ import { ReportsService } from '../reports.service'
 })
 export class PostReportComponent implements OnInit {
 
-  urlRegexp = new RegExp("^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$")
+  urlRegexp = new RegExp("^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(.)*$")
 
 
   title
@@ -37,9 +37,7 @@ export class PostReportComponent implements OnInit {
   }
 
   submit(title, theme, description, link, imgLink){
-    if(!(this.urlRegexp.test(link) && this.urlRegexp.test(imgLink))){
-      alert("INVALID URL FORMAT")
-    }else{
+    if(this.validateData(title, theme, description, link,imgLink)){
       this.reportService.createReport({
         title : title.value,
         theme : theme.value,
@@ -50,5 +48,16 @@ export class PostReportComponent implements OnInit {
         this.closeModal()
       })
     }
+  }
+
+  validateData(title, theme, description, link, imgLink){
+    if(!(this.urlRegexp.test(link.value) && this.urlRegexp.test(imgLink.value))){
+      alert("INVALID URL")
+      return false
+    }else if(title.value.length > 80 || description.value.length > 80){
+      alert("STRING LONGA DEMAIS, TEM QUE TER ATÉ 80 CARACTERES")
+      return false
+    }
+    return true;
   }
 }
