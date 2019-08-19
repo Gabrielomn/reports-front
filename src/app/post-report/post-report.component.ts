@@ -52,10 +52,10 @@ export class PostReportComponent implements OnInit {
 
   validateData(title, theme, description, link, imgLink){
     if(!(this.urlRegexp.test(link.value) && this.urlRegexp.test(imgLink.value))){
-      alert("INVALID URL")
+      alert("INVALID URL\n")
       return false
     }else if(title.value.length > 80 || description.value.length > 80){
-      alert("STRING LONGA DEMAIS, TEM QUE TER ATÉ 80 CARACTERES")
+      alert(`String longa demais, deve ter até 80 caracteres\n${title.value.length > 80 ? "title" : ""}\n${description.value.length > 80 ? "description" : ""}`)
       return false
     }
     return true;

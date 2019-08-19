@@ -41,11 +41,11 @@ export class UpdateReportComponent implements OnInit {
   }
 
   validateData(title, theme, description, link, imgLink){
-    if(!(this.urlRegexp.test(link) && this.urlRegexp.test(imgLink))){
-      alert("INVALID URL")
+    if(!(this.urlRegexp.test(link.value) && this.urlRegexp.test(imgLink.value))){
+      alert(`INVALID URL\n`)
       return false
     }else if(title.length > 80 || description.length > 80){
-      alert("STRING LONGA DEMAIS, TEM QUE TER ATÉ 80 CARACTERES")
+      alert(`Os seguintes campos foram longos demais, deve ter até 80 caracteres\n${title.length > 80 ? "title" : ""}\n${description.length > 80 ? "description" : ""}`)
       return false
     }
     return true;
