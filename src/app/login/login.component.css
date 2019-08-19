@@ -1,0 +1,11 @@
+.corpo{
+    
+    width: 600px;
+    height: 600px;
+    display: flex;
+    align-items: center;
+}
+
+.corpo label{
+    margin-left: 488px;
+}
