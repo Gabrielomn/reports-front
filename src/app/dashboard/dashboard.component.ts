@@ -5,6 +5,7 @@ import { PostReportComponent } from '../post-report/post-report.component'
 import { UpdateReportComponent } from '../update-report/update-report.component'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-dashboard',
@@ -15,15 +16,21 @@ export class DashboardComponent implements OnInit {
 
   reports:Array<Report>
   currentTitle: string;
+  base_url
 
   constructor(private reportService:ReportsService,
-    private modalService:NgbModal
+    private modalService:NgbModal, private router:Router
     ) {
-
+      this.updateReports()
+      this.base_url = "http://localhost:4200/"
    }
 
   ngOnInit() {
+    
     this.updateReports()
+    if(!(localStorage.getItem("mytoken"))){
+      this.router.navigate([`/`],{relativeTo:this.base_url})
+    }
   }
 
 

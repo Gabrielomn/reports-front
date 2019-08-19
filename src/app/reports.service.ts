@@ -10,7 +10,7 @@ export class ReportsService {
 
   constructor(private http: HttpClient) { 
     this.headers = new HttpHeaders({
-      'Authorization': 'Bearer' + 'placeholder',
+      'Authorization': 'Bearer ' + localStorage.getItem("mytoken"),
       'Content-Type':  'application/json'
     })
 

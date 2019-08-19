@@ -8,12 +8,16 @@ import { PostReportComponent } from './post-report/post-report.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateReportComponent } from './update-report/update-report.component';
+import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     PostReportComponent,
-    UpdateReportComponent
+    UpdateReportComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +25,7 @@ import { UpdateReportComponent } from './update-report/update-report.component';
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
-
+    AppRoutingModule
   ],
   entryComponents:[
     PostReportComponent,
