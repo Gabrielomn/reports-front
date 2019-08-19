@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment'
 })
 export class PostReportComponent implements OnInit {
 
-  urlRegexp = new RegExp("^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(.)*$")
+  urlRegexp = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(.)*$/
 
 
   title

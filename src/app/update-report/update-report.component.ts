@@ -12,7 +12,7 @@ import { environment } from '../../environments/environment'
 })
 export class UpdateReportComponent implements OnInit {
 
-  urlRegexp = new RegExp("^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(.)*$")
+  urlRegexp = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(.)*$/
   baseUrl
   
   constructor(private activeModal:NgbActiveModal,
