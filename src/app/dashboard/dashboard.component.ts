@@ -6,7 +6,7 @@ import { UpdateReportComponent } from '../update-report/update-report.component'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from "@angular/router"
-
+import { environment } from '../../environments/environment'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -21,10 +21,8 @@ export class DashboardComponent implements OnInit {
   constructor(private reportService:ReportsService,
     private modalService:NgbModal, private router:Router
     ) {
-      this.base_url = "http://localhost:4200/"
+      this.base_url = environment.baseUrl
       this.router.events.subscribe(event => {
-        console.log(localStorage.getItem('mytoken'))        
-        console.log(event['urlAfterRedirects'])
         if(event['urlAfterRedirects']){
           if(event['urlAfterRedirects'] == "/dashboard")
           this.updateReports()
@@ -46,14 +44,29 @@ export class DashboardComponent implements OnInit {
   remove(_id){
     this.reportService.deleteReport(_id).subscribe(() =>{
       this.updateReports()
+    }, err => {
+      console.log(err)
+      if(err['statusText'] =="Unauthorized"){
+        localStorage.clear()
+        this.router.navigate([`/`],{relativeTo:this.base_url})
+      }
     })
   }
 
 
   updateReports(){
+  
     this.reportService.getReports().subscribe(data =>{
+      console.log(data)
       this.reports = data.map(report => new Report(report))
+    }, err => {
+      console.log(err)
+      if(err['statusText'] =="Unauthorized"){
+        localStorage.clear()
+        this.router.navigate([`/`],{relativeTo:this.base_url})
+      }
     })
+ 
   }
 
 

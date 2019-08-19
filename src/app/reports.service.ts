@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http'
 import { Router } from "@angular/router"
-
+import { environment } from '../environments/environment'
 @Injectable({
   providedIn: 'root'
 })
@@ -23,21 +23,21 @@ export class ReportsService {
   }
 
   getReports(){
-    return this.http.get<Array<Object>>('http://localhost:8080/report', {headers:this.headers})
+    return this.http.get<Array<Object>>(`${environment.api}/report`, {headers:this.headers})
   }
 
   deleteReport(id){
     console.log(`deleting ${id}`)
-    return this.http.delete(`http://localhost:8080/report/${id}`,{headers:this.headers})
+    return this.http.delete(`${environment.api}/report/${id}`,{headers:this.headers})
   }
   
   updateReport(id, report){
     console.log(`updating ${id}`)
-    return this.http.put(`http://localhost:8080/report/${id}`, report, {headers:this.headers})
+    return this.http.put(`${environment.api}/report/${id}`, report, {headers:this.headers})
   }
 
   createReport(report){
-    return this.http.post("http://localhost:8080/report", report, {headers:this.headers})
+    return this.http.post(`${environment.api}/report`, report, {headers:this.headers})
   }
 
 }

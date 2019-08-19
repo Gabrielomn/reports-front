@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
 import { ReportsService } from '../reports.service'
-
+import { Router } from "@angular/router"
+import { environment } from '../../environments/environment'
 @Component({
   selector: 'app-post-report',
   templateUrl: './post-report.component.html',
@@ -18,15 +19,16 @@ export class PostReportComponent implements OnInit {
   description
   link
   imgLink
-  
+  base_url
+
   constructor(private activeModal:NgbActiveModal,
-    private reportService:ReportsService) {
+    private reportService:ReportsService, private router:Router) {
     this.title = new FormControl('')
     this.theme = new FormControl('')
     this.description = new FormControl('')
     this.link = new FormControl('')
     this.imgLink = new FormControl('')
-
+    this.base_url = environment.baseUrl
   }
 
   ngOnInit() {
@@ -46,6 +48,14 @@ export class PostReportComponent implements OnInit {
         imgLink : imgLink.value
       }).subscribe(data => {
         this.closeModal()
+      }, err => {
+        console.log(err)
+        if(err['statusText'] =="Unauthorized"){
+          localStorage.clear()
+          this.closeModal()
+          this.router.navigate([`/`],{relativeTo:this.base_url})
+
+        }
       })
     }
   }

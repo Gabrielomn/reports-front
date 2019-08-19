@@ -3,7 +3,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
 import { ReportsService } from '../reports.service'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
-
+import { Router } from "@angular/router"
+import { environment } from '../../environments/environment'
 @Component({
   selector: 'app-update-report',
   templateUrl: './update-report.component.html',
@@ -12,11 +13,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 export class UpdateReportComponent implements OnInit {
 
   urlRegexp = new RegExp("^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(.)*$")
-
+  baseUrl
   
   constructor(private activeModal:NgbActiveModal,
-    private reportService:ReportsService, ) {
-
+    private reportService:ReportsService, private router:Router ) {
+      this.baseUrl = environment.baseUrl
 
   }
   ngOnInit() {
@@ -32,6 +33,14 @@ export class UpdateReportComponent implements OnInit {
         imgLink
       }).subscribe(data=>{
         this.closeModal()
+      }, err => {
+        console.log("ALO PORRA")
+        console.log(err)
+        if(err['statusText'] =="Unauthorized"){
+          localStorage.clear()
+          this.closeModal()
+          this.router.navigate([`/`],{relativeTo:this.baseUrl})
+        }
       })
     }
   }
