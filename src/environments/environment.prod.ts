@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  api:"placeholder",
-  baseUrl:"placeholder"
+  api:"casperbot-api.herokuapp.com",
+  baseUrl:"reports-admin.herokuapp.com"
 };
