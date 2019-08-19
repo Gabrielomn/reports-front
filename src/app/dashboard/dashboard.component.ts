@@ -21,15 +21,24 @@ export class DashboardComponent implements OnInit {
   constructor(private reportService:ReportsService,
     private modalService:NgbModal, private router:Router
     ) {
-      this.updateReports()
       this.base_url = "http://localhost:4200/"
+      this.router.events.subscribe(event => {
+        console.log(localStorage.getItem('mytoken'))        
+        console.log(event['urlAfterRedirects'])
+        if(event['urlAfterRedirects']){
+          if(event['urlAfterRedirects'] == "/dashboard")
+          this.updateReports()
+        }
+      })
+
    }
 
   ngOnInit() {
-    
-    this.updateReports()
+  
     if(!(localStorage.getItem("mytoken"))){
       this.router.navigate([`/`],{relativeTo:this.base_url})
+    }else{
+      this.updateReports()
     }
   }
 
@@ -46,6 +55,8 @@ export class DashboardComponent implements OnInit {
       this.reports = data.map(report => new Report(report))
     })
   }
+
+
 
 
   openPostForm(){

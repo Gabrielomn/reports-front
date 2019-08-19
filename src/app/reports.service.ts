@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http'
+import { Router } from "@angular/router"
 
 @Injectable({
   providedIn: 'root'
@@ -8,15 +9,17 @@ export class ReportsService {
 
   headers
 
-  constructor(private http: HttpClient) { 
-    this.headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + localStorage.getItem("mytoken"),
-      'Content-Type':  'application/json'
+  constructor(private http: HttpClient, private router:Router) {
+    this.router.events.subscribe(event => {      
+      if(event['urlAfterRedirects']){
+        if(event['urlAfterRedirects'] == "/dashboard")
+        
+        this.headers = new HttpHeaders({
+          'Authorization': 'Bearer ' + localStorage.getItem("mytoken"),
+          'Content-Type':  'application/json'
+          })
+      } 
     })
-
-    console.log(this.headers.keys())
-    console.log(this.headers.get('Authorization'))
-
   }
 
   getReports(){
