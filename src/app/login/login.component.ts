@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(pin){
+    console.log(environment.api)
     this.http.post(`${environment.api}/authenticate`, {pin}).subscribe(res => {
       localStorage.setItem("mytoken", res['token'])
       this.router.navigate([`dashboard`])
