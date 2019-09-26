@@ -1,8 +1,9 @@
-<div class= "corpo">
-  <label>
-    Pin:
-    <input type="text" [formControl]="pin">
-    <input value="Login" type="submit" (click)=login(pin.value)>
-  
-  </label>
+
+<div class="container">
+  <div class="form">
+    <mat-form-field>
+      <input matInput placeholder="Insert Pin here(012962)"  [(ngModel)]="pin">
+    </mat-form-field>
+    <button mat-button (click)=submit(pin)>login</button>
+  </div>
 </div>

@@ -1,34 +1,35 @@
-<div class="container">
-  <div class="body">
-    <div class="title" id="title">
-      <h1>Reports Admin</h1>
-    </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Title</th>
-          <th scope="col">Theme</th>
-          <th scope="col">Description</th>
-          <th scope="col">link</th>
-          <th scope="col">Image Link</th>
-          <th></th>
+<div>
+  <div class="table">
+    <table mat-table [dataSource]="reports" class="mat-elevation-z8">
+      <ng-container matColumnDef="Título">
+        <th mat-header-cel *matHeaderCellDef>Titulo</th>
+        <td mat-cel *matCellDef="let element">{{element.title}}</td>
+      </ng-container>
 
-        </tr>
-      </thead>
-      <tr *ngFor="let report of reports">
-        <td>{{report.title}}</td>
-        <td>{{report.theme}}</td>
-        <td>{{report.description}}</td>
-        <td><a href="{{report.link}}">{{report.link}}</a></td>
-        <td><a href="{{report.imgLink}}">{{report.imgLink}}</a></td>
-      <button (click)="remove(report._id)"><i class="material-icons">delete_forever</i></button>
-      <button (click)="openUpdateForm(report)"><i class="material-icons">refresh</i></button>
-      </tr>
+      <ng-container matColumnDef="Tema">
+        <th mat-header-cel *matHeaderCellDef>Tema</th>
+        <td mat-cel *matCellDef="let element">{{element.theme}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Descrição">
+        <th mat-header-cel *matHeaderCellDef>Description</th>
+        <td mat-cel *matCellDef="let element">{{element.description}}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Link">
+        <th mat-header-cel *matHeaderCellDef>Link</th>
+        <td mat-cel *matCellDef="let element">{{element.link}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Image Link">
+        <th mat-header-cel *matHeaderCellDef>Image Link</th>
+        <td mat-cel *matCellDef="let element">{{element.imgLink}}</td>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </table>
   </div>
-  <div class="row">
-    <div class="col text-center">
-      <button class="addButton" (click)="openPostForm()"><i class="material-icons md-48">add_circle</i></button>
-    </div>
-  </div>
-</div>  
+</div>

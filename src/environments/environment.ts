@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  api:"http://casperbot-api.herokuapp.com",
-  baseUrl:"http://reports-admin.herokuapp.com"
+  backendApi:"http://casperbot-api.herokuapp.com",
+  base_url:"http://localhost:4200"
 };
 
 /*

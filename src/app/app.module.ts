@@ -1,35 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MaterialModule } from './material'
+import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { AppRoutingModule } from './app-routing.module'
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
-import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { PostReportComponent } from './post-report/post-report.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
-import { ReactiveFormsModule } from '@angular/forms';
-import { UpdateReportComponent } from './update-report/update-report.component';
-import { AppRoutingModule } from './app-routing.module';
-import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    PostReportComponent,
-    UpdateReportComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    MaterialModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
     FormsModule,
-    NgbModule,
-    ReactiveFormsModule,
-    AppRoutingModule
-  ],
-  entryComponents:[
-    PostReportComponent,
-    UpdateReportComponent
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

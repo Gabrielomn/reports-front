@@ -1,11 +1,14 @@
-.corpo{
-    
-    width: 600px;
-    height: 600px;
-    display: flex;
-    align-items: center;
+.container{
+    display:grid;
+    height: 100vh;
+    width: 100vw;
 }
 
-.corpo label{
-    margin-left: 488px;
+.form{
+    margin:auto;
+}
+
+button{
+    margin-left: 5px;
+    background:#c4c4c4;
 }

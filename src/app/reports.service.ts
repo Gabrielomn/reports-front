@@ -23,21 +23,21 @@ export class ReportsService {
   }
 
   getReports(){
-    return this.http.get<Array<Object>>(`${environment.api}/report`, {headers:this.headers})
+    return this.http.get<Array<Object>>(`${environment.backendApi}/report`, {headers:this.headers})
   }
 
   deleteReport(id){
     console.log(`deleting ${id}`)
-    return this.http.delete(`${environment.api}/report/${id}`,{headers:this.headers})
+    return this.http.delete(`${environment.backendApi}/report/${id}`,{headers:this.headers})
   }
   
   updateReport(id, report){
     console.log(`updating ${id}`)
-    return this.http.put(`${environment.api}/report/${id}`, report, {headers:this.headers})
+    return this.http.put(`${environment.backendApi}/report/${id}`, report, {headers:this.headers})
   }
 
   createReport(report){
-    return this.http.post(`${environment.api}/report`, report, {headers:this.headers})
+    return this.http.post(`${environment.backendApi}/report`, report, {headers:this.headers})
   }
 
 }

@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ReportsService } from '../reports.service'
-import { Report } from '../../models/report'
-import { PostReportComponent } from '../post-report/post-report.component'
-import { UpdateReportComponent } from '../update-report/update-report.component'
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from "@angular/router"
-import { environment } from '../../environments/environment'
+import { environment } from "../../environments/environment"
+import { ReportsService } from "../reports.service"
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,85 +9,28 @@ import { environment } from '../../environments/environment'
 })
 export class DashboardComponent implements OnInit {
 
-  reports:Array<Report>
-  currentTitle: string;
-  base_url
-
-  constructor(private reportService:ReportsService,
-    private modalService:NgbModal, private router:Router
-    ) {
-      this.base_url = environment.baseUrl
-      this.router.events.subscribe(event => {
-        if(event['urlAfterRedirects']){
-          if(event['urlAfterRedirects'] == "/dashboard")
-          this.updateReports()
-        }
-      })
-
-   }
+  reports:Array<Object>
+  displayedColumns: string[] = ['Título', 'Tema', 'Descrição', 'Link', 'Image Link']
+    constructor(private router:Router, private reportsService:ReportsService) { 
+  }
 
   ngOnInit() {
-  
     if(!(localStorage.getItem("mytoken"))){
-      this.router.navigate([`/`],{relativeTo:this.base_url})
+      this.router.navigate([`/`],{relativeTo:environment.base_url})
     }else{
       this.updateReports()
     }
   }
-
-
-  remove(_id){
-    this.reportService.deleteReport(_id).subscribe(() =>{
-      this.updateReports()
-    }, err => {
-      console.log(err)
-      if(err['statusText'] =="Unauthorized"){
-        localStorage.clear()
-        this.router.navigate([`/`],{relativeTo:this.base_url})
-      }
-    })
-  }
-
-
   updateReports(){
   
-    this.reportService.getReports().subscribe(data =>{
+    this.reportsService.getReports().subscribe(data => {
       console.log(data)
-      this.reports = data.map(report => new Report(report))
+      this.reports = data
     }, err => {
-      console.log(err)
       if(err['statusText'] =="Unauthorized"){
         localStorage.clear()
-        this.router.navigate([`/`],{relativeTo:this.base_url})
+        this.router.navigate([`/`],{relativeTo:environment.base_url})
       }
-    })
- 
-  }
-
-
-
-
-  openPostForm(){
-    const modalRef = this.modalService.open(PostReportComponent)
-    modalRef.result.then((result) => {
-      this.updateReports()
-    }).catch((error) => {
-      console.log(error)
-    })
-  }
-
-  openUpdateForm(report:Report){
-    let modalRef = this.modalService.open(UpdateReportComponent)
-    modalRef.componentInstance.title = report.title
-    modalRef.componentInstance.theme = report.theme
-    modalRef.componentInstance.description = report.description
-    modalRef.componentInstance.link = report.link
-    modalRef.componentInstance.imgLink = report.imgLink
-    modalRef.componentInstance.id = report._id
-    modalRef.result.then((result) => {
-      this.updateReports()
-    }).catch((error) => {
-      console.log(error)
     })
   }
 }
