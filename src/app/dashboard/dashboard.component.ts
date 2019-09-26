@@ -10,7 +10,7 @@ import { ReportsService } from "../reports.service"
 export class DashboardComponent implements OnInit {
 
   reports:Array<Object>
-  displayedColumns: string[] = ['Título', 'Tema', 'Descrição', 'Link', 'Image Link']
+  displayedColumns: string[] = ['Título', 'Tema', 'Descrição', 'Link', 'Image Link', 'Actions']
     constructor(private router:Router, private reportsService:ReportsService, private acRoute:ActivatedRoute) { 
   }
 
@@ -38,5 +38,15 @@ export class DashboardComponent implements OnInit {
     localStorage.clear();
     this.router.navigate([`/`],{relativeTo:this.acRoute})
 
+  }
+
+  update(id:String){
+    console.log(id)
+  }
+
+  delete(id:String){
+    this.reportsService.deleteReport(id).subscribe(() =>{
+      this.updateReports();
+    });
   }
 }

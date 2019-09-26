@@ -30,6 +30,14 @@
         <td mat-cel *matCellDef="let element"><a href={{element.imgLink}}>{{element.imgLink}}</a></td>
       </ng-container>
 
+      <ng-container matColumnDef="Actions">
+          <th mat-header-cel *matHeaderCellDef>Actions</th>
+          <td mat-cel *matCellDef="let element"><div>
+              <button mat-button (click)=delete(element._id)>delete</button>
+              <button mat-button (click)=update(element._id)>update</button>
+
+          </div></td>
+        </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
