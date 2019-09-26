@@ -1,12 +1,37 @@
 .table{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mat-header-row{
+    background-color: red;
 }
 
 th{
     width: 200px;
+    margin: 0 4px;
 }
 
 td{
     width: 200px;
     overflow: hidden;
+    text-align: center;
+    margin: 0 4px;
 }
+
+.container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav{
+    width: 100%;
+    display: flex;
+    background: lightgray;
+    flex-direction: row-reverse;
+    margin-bottom: 10px;
+}
+

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router"
+import { Router, ActivatedRoute } from "@angular/router"
 import { environment } from "../../environments/environment"
 import { ReportsService } from "../reports.service"
 @Component({
@@ -11,12 +11,12 @@ export class DashboardComponent implements OnInit {
 
   reports:Array<Object>
   displayedColumns: string[] = ['Título', 'Tema', 'Descrição', 'Link', 'Image Link']
-    constructor(private router:Router, private reportsService:ReportsService) { 
+    constructor(private router:Router, private reportsService:ReportsService, private acRoute:ActivatedRoute) { 
   }
 
   ngOnInit() {
     if(!(localStorage.getItem("mytoken"))){
-      this.router.navigate([`/`],{relativeTo:environment.base_url})
+      this.router.navigate([`/`],{relativeTo:this.acRoute})
     }else{
       this.updateReports()
     }
@@ -29,8 +29,14 @@ export class DashboardComponent implements OnInit {
     }, err => {
       if(err['statusText'] =="Unauthorized"){
         localStorage.clear()
-        this.router.navigate([`/`],{relativeTo:environment.base_url})
+        this.router.navigate([`/`],{relativeTo:this.acRoute})
       }
     })
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate([`/`],{relativeTo:this.acRoute})
+
   }
 }

@@ -1,4 +1,7 @@
-<div>
+<div class="container">
+  <div class="nav">
+      <button mat-button (click)=logout(pin)>logout</button>
+  </div>
   <div class="table">
     <table mat-table [dataSource]="reports" class="mat-elevation-z8">
       <ng-container matColumnDef="Título">
@@ -19,12 +22,12 @@
 
       <ng-container matColumnDef="Link">
         <th mat-header-cel *matHeaderCellDef>Link</th>
-        <td mat-cel *matCellDef="let element">{{element.link}}</td>
+        <td mat-cel *matCellDef="let element"><a href={{element.link}}>{{element.link}}</a></td>
       </ng-container>
 
       <ng-container matColumnDef="Image Link">
         <th mat-header-cel *matHeaderCellDef>Image Link</th>
-        <td mat-cel *matCellDef="let element">{{element.imgLink}}</td>
+        <td mat-cel *matCellDef="let element"><a href={{element.imgLink}}>{{element.imgLink}}</a></td>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
