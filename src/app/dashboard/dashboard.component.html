@@ -1,6 +1,6 @@
 <div class="container">
   <div class="nav">
-      <button mat-button (click)=logout(pin)>logout</button>
+      <button mat-button (click)=logout(pin)><i class="material-icons">exit_to_app</i></button>
   </div>
   <div class="table">
     <table mat-table [dataSource]="reports" class="mat-elevation-z8">
@@ -33,8 +33,9 @@
       <ng-container matColumnDef="Actions">
           <th mat-header-cel *matHeaderCellDef>Actions</th>
           <td mat-cel *matCellDef="let element"><div>
-              <button mat-button (click)=delete(element._id)>delete</button>
-              <button mat-button (click)=update(element)>update</button>
+            
+              <button mat-button (click)=delete(element._id)><i class="material-icons">delete</i></button>
+              <button mat-button (click)=update(element)><i class="material-icons">refresh</i></button>
 
           </div></td>
         </ng-container>
@@ -43,5 +44,5 @@
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </table>
   </div>
-  <button id="post" mat-button (click)=post(element)>Create</button>
+  <button id="post" mat-button (click)=post(element)><i id="posticon" class="material-icons">add_box</i></button>
 </div>

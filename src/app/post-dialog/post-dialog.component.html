@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Update a Report</h2>
+<h2 mat-dialog-title>Create a Report</h2>
 <mat-dialog-content [formGroup]="form">
   Title
   <mat-form-field>
@@ -9,7 +9,7 @@
     <input matInput formControlName="description">
   </mat-form-field>
   Theme
-  <mat-select placeholder="Select theme"
+  <mat-select id="select" placeholder="Select theme"
   formControlName="theme">
     <mat-option value="Política">
         Política</mat-option>

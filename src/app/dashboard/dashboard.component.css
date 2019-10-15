@@ -6,16 +6,16 @@
 }
 
 .mat-header-row{
-    background-color: red;
+    background-color: #D8C3A5;
 }
 
 th{
-    width: 200px;
+    width: 16.6%;
     margin: 0 4px;
 }
 
 td{
-    width: 200px;
+    width: 16.6%;
     overflow: hidden;
     text-align: center;
     margin: 0 4px;
@@ -25,12 +25,14 @@ td{
     display:flex;
     flex-direction: column;
     align-items: center;
+    background-color: #EAE7DC
+    
 }
 
 .nav{
     width: 100%;
     display: flex;
-    background: lightgray;
+    background: #D8C3A5;
     flex-direction: row-reverse;
     margin-bottom: 10px;
 }
@@ -39,4 +41,8 @@ td{
     position: fixed;
     top:600px;
     left:46%;
+}
+
+#posticon{
+    font-size: 40px;
 }
