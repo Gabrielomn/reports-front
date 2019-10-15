@@ -35,3 +35,8 @@ td{
     margin-bottom: 10px;
 }
 
+#post{
+    position: fixed;
+    top:600px;
+    left:46%;
+}

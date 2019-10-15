@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Update a Report</h2>
+<mat-dialog-content [formGroup]="form">
+  Title
+  <mat-form-field>
+    <input matInput formControlName="title">
+  </mat-form-field>
+  Description
+  <mat-form-field>
+    <input matInput formControlName="description">
+  </mat-form-field>
+  Theme
+  <mat-select placeholder="Select theme"
+  formControlName="theme">
+    <mat-option value="Política">
+        Política</mat-option>
+    <mat-option value="Esportes">
+        Esportes</mat-option>
+    <mat-option value="Famosos">
+        Famosos</mat-option>
+    <mat-option value="Outros">
+        Outros</mat-option>
+  </mat-select>
+  Link
+  <mat-form-field>
+    <input matInput formControlName="link">
+  </mat-form-field>
+  Image Link
+  <mat-form-field>
+    <input matInput formControlName="imgLink">
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button"(click)="close()">Close</button>
+  <button class="mat-raised-button mat-primary"(click)="save()">Update</button>
+</mat-dialog-actions>

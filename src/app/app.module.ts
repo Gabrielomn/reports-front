@@ -6,14 +6,17 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { AppRoutingModule } from './app-routing.module'
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import {PostDialogComponent} from './post-dialog/post-dialog.component';
+import { UpdateDialogComponent } from './update-dialog/update-dialog.component'
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    UpdateDialogComponent,
+    PostDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +24,12 @@ import { HttpClientModule } from '@angular/common/http'
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
+  entryComponents:[
+    UpdateDialogComponent,
+    PostDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

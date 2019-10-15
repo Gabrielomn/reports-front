@@ -34,7 +34,7 @@
           <th mat-header-cel *matHeaderCellDef>Actions</th>
           <td mat-cel *matCellDef="let element"><div>
               <button mat-button (click)=delete(element._id)>delete</button>
-              <button mat-button (click)=update(element._id)>update</button>
+              <button mat-button (click)=update(element)>update</button>
 
           </div></td>
         </ng-container>
@@ -43,4 +43,5 @@
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </table>
   </div>
+  <button id="post" mat-button (click)=post(element)>Create</button>
 </div>
