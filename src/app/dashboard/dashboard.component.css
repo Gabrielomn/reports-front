@@ -8,14 +8,16 @@
 .mat-header-row{
     background-color: #D8C3A5;
 }
-
+thead, tbody{
+    width: 100%;
+}
 th{
     width: 16.6%;
     margin: 0 4px;
 }
 
 td{
-    width: 16.6%;
+    width: 15.46vw;
     overflow: hidden;
     text-align: center;
     margin: 0 4px;

@@ -5,12 +5,12 @@
   <div class="table">
     <table mat-table [dataSource]="reports" class="mat-elevation-z8">
       <ng-container matColumnDef="Título">
-        <th mat-header-cel *matHeaderCellDef>Titulo</th>
+        <th mat-header-cel *matHeaderCellDef>Title</th>
         <td mat-cel *matCellDef="let element">{{element.title}}</td>
       </ng-container>
 
       <ng-container matColumnDef="Tema">
-        <th mat-header-cel *matHeaderCellDef>Tema</th>
+        <th mat-header-cel *matHeaderCellDef>Theme</th>
         <td mat-cel *matCellDef="let element">{{element.theme}}</td>
       </ng-container>
 
